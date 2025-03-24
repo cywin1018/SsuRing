@@ -1,23 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import type {PropsWithChildren} from 'react';
+import {ScrollView, StatusBar, Text, useColorScheme, View} from 'react-native';
 import {
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
   DebugInstructions,
   Header,
   LearnMoreLinks,
@@ -30,24 +14,19 @@ type SectionProps = PropsWithChildren<{
 
 function Section({children, title}: SectionProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+
   return (
-    <View style={styles.sectionContainer}>
+    <View className="mb-6 px-6">
       <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
+        className={`mb-2 text-xl font-bold ${
+          isDarkMode ? 'text-white' : 'text-black'
+        }`}>
         {title}
       </Text>
       <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
+        className={`text-base ${
+          isDarkMode ? 'text-gray-300' : 'text-gray-700'
+        }`}>
         {children}
       </Text>
     </View>
@@ -56,42 +35,26 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  /*
-   * To keep the template simple and small we're adding padding to prevent view
-   * from rendering under the System UI.
-   * For bigger apps the reccomendation is to use `react-native-safe-area-context`:
-   * https://github.com/AppAndFlow/react-native-safe-area-context
-   *
-   * You can read more about it here:
-   * https://github.com/react-native-community/discussions-and-proposals/discussions/827
-   */
-  const safePadding = '5%';
+  const bgColor = isDarkMode ? 'bg-gray-900' : 'bg-gray-100';
+  const safePadding = 'p-[5%]';
 
   return (
-    <View style={backgroundStyle}>
+    <View className={`${bgColor} flex-1`}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        backgroundColor={isDarkMode ? '#0f172a' : '#f3f4f6'} // Tailwind 컬러값 수동 적용
       />
-      <ScrollView
-        style={backgroundStyle}>
-        <View style={{paddingRight: safePadding}}>
-          <Header/>
+      <ScrollView className={`${bgColor}`}>
+        <View className={`pr-[5%]`}>
+          <Header />
         </View>
         <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            paddingHorizontal: safePadding,
-            paddingBottom: safePadding,
-          }}>
+          className={`${
+            isDarkMode ? 'bg-black' : 'bg-white'
+          } ${safePadding} pb-[5%]`}>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
+            Edit <Text className="font-bold text-blue-500">App.tsx</Text> to
+            change this screen and then come back to see your edits.
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
@@ -108,24 +71,5 @@ function App(): React.JSX.Element {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
