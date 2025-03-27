@@ -1,7 +1,9 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    "types": ["nativewind/types"],
+    "types": [
+      "nativewind/types"
+    ],
     "jsx": "react-native",
     "strict": true,
     "target": "esnext",
@@ -9,5 +11,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": ["global.d.ts", "src", "App.tsx"]
+  "include": [
+    "global.d.ts",
+    "src",
+    "App.tsx",
+    "nativewind-env.d.ts"
+  ]
 }

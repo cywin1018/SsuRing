@@ -1,71 +1,27 @@
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {ScrollView, StatusBar, Text, useColorScheme, View} from 'react-native';
-import {
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  return (
-    <View className="mb-6 px-6">
-      <Text
-        className={`mb-2 text-xl font-bold ${
-          isDarkMode ? 'text-white' : 'text-black'
-        }`}>
-        {title}
-      </Text>
-      <Text
-        className={`text-base ${
-          isDarkMode ? 'text-gray-300' : 'text-gray-700'
-        }`}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import './global.css';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-  const bgColor = isDarkMode ? 'bg-gray-900' : 'bg-gray-100';
-  const safePadding = 'p-[5%]';
+  const backgroundColor = isDarkMode ? 'bg-black' : 'bg-white';
 
   return (
-    <View className={`${bgColor} flex-1`}>
+    <View className={`flex-1 ${backgroundColor}`}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={isDarkMode ? '#0f172a' : '#f3f4f6'} // Tailwind 컬러값 수동 적용
+        backgroundColor={isDarkMode ? '#000' : '#fff'}
       />
-      <ScrollView className={`${bgColor}`}>
-        <View className={`pr-[5%]`}>
-          <Header />
+      <ScrollView>
+        {/* 빨간 배경의 박스 */}
+        <View className="h-32 w-full items-center justify-center">
+          <Text className="bg-red-500 text-xl text-white">Title</Text>
         </View>
-        <View
-          className={`${
-            isDarkMode ? 'bg-black' : 'bg-white'
-          } ${safePadding} pb-[5%]`}>
-          <Section title="Step One">
-            Edit <Text className="font-bold text-blue-500">App.tsx</Text> to
-            change this screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+        {/* 추가 텍스트 영역 */}
+        <View className="mt-4">
+          <Text className="text-base text-red-300 dark:text-white">
+            This is a
+          </Text>
         </View>
       </ScrollView>
     </View>
