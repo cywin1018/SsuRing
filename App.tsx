@@ -1,9 +1,9 @@
 import React from 'react';
 import './global.css';
-import LoginScreen from './src/screens/login/LoginScreen.tsx';
+import StackNavigation from './src/navigation/StackNavigation.tsx';
 
 function App(): React.JSX.Element {
-  return <LoginScreen />;
+  return <StackNavigation />;
 }
 
 export default App;

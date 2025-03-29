@@ -2,22 +2,34 @@ import React from 'react';
 import axios from 'axios';
 import useAuthStore from '../../stores/LoginStore.ts';
 import {Alert, Button, Switch, Text, TextInput, View} from 'react-native';
+import type {StackScreenProps} from '@react-navigation/stack';
 
-const LoginScreen = () => {
+type LoginScreenProps = StackScreenProps<MainStackParamList, 'login'>;
+export type MainStackParamList = {
+  home: undefined;
+  login: undefined;
+};
+const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
   const {studentId, password, autoLogin, setCredentials, setAutoLogin} =
     useAuthStore();
+
   const handleLogin = async () => {
     try {
       const response = await axios.post('http://10.0.2.2:8000/login', {
         studentId: studentId,
         password: password,
       });
-      console.log(response);
       console.log('Login successful:', response.data);
 
       Alert.alert(
         '로그인 성공',
         '크롤링 데이터: ' + JSON.stringify(response.data.programs),
+        [
+          {
+            text: '확인',
+            onPress: () => navigation.navigate('home'), // 로그인 성공 후 HomeScreen으로 이동
+          },
+        ],
       );
     } catch (error) {
       console.error(error);
