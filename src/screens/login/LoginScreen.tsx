@@ -3,12 +3,10 @@ import axios from 'axios';
 import useAuthStore from '../../stores/LoginStore.ts';
 import {Alert, Button, Switch, Text, TextInput, View} from 'react-native';
 import type {StackScreenProps} from '@react-navigation/stack';
+import {MainStackParamList} from '../../types/navigation/navigation.ts';
 
 type LoginScreenProps = StackScreenProps<MainStackParamList, 'login'>;
-export type MainStackParamList = {
-  home: undefined;
-  login: undefined;
-};
+
 const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
   const {studentId, password, autoLogin, setCredentials, setAutoLogin} =
     useAuthStore();

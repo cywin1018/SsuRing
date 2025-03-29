@@ -5,19 +5,10 @@ import {
 } from '@react-navigation/stack';
 import HomeScreen from '../screens/home/HomeScreen.tsx';
 import LoginScreen from '../screens/login/LoginScreen.tsx';
+import {RootStackPageList} from '../types/navigation/navigation.ts';
 
-export declare module CommonType {
-  /**
-   * StackNavigation 관리하는 화면들
-   */
-  export type RootStackPageList = {
-    default: undefined;
-    home: undefined;
-    login: undefined;
-  };
-}
 const StackNavigation = () => {
-  const Stack = createStackNavigator<CommonType.RootStackPageList>();
+  const Stack = createStackNavigator<RootStackPageList>();
 
   const customStackNavigationOptions: StackNavigationOptions = {
     gestureEnabled: false,

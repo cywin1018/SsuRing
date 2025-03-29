@@ -2,12 +2,10 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
 import type {StackScreenProps} from '@react-navigation/stack';
+import {MainStackParamList} from '../../types/navigation/navigation.ts';
 
 type HomeScreenProps = StackScreenProps<MainStackParamList, 'home'>;
-export type MainStackParamList = {
-  home: undefined;
-  login: undefined;
-};
+
 const HomeScreen: React.FC<HomeScreenProps> = ({navigation, route}) => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
