@@ -4,4 +4,5 @@ export interface AuthProps {
   autoLogin: boolean;
   setCredentials: (studentId: string, password: string) => void;
   setAutoLogin: (value: boolean) => void;
+  reset: () => void;
 }
