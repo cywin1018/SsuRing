@@ -9,8 +9,10 @@ const useAuthStore = create<AuthProps>()(
       studentId: '',
       password: '',
       autoLogin: false,
+      cookie: '',
       setCredentials: (studentId, password) => set({studentId, password}),
       setAutoLogin: value => set({autoLogin: value}),
+      setCookie: cookie => set({cookie}),
       reset: () => set({studentId: '', password: '', autoLogin: false}),
     }),
     {

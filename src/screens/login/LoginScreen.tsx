@@ -8,31 +8,39 @@ import {MainStackParamList} from '../../types/navigation/navigation.ts';
 type LoginScreenProps = StackScreenProps<MainStackParamList, 'login'>;
 
 const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
-  const {studentId, password, autoLogin, setCredentials, setAutoLogin} =
-    useAuthStore();
+  const {
+    studentId,
+    password,
+    autoLogin,
+    setCredentials,
+    setAutoLogin,
+    setCookie,
+  } = useAuthStore();
 
   const handleLogin = async () => {
-    try {
-      const response = await axios.post('http://10.0.2.2:8000/login', {
-        studentId: studentId,
-        password: password,
-      });
-      console.log('Login successful:', response.data);
-
-      Alert.alert(
-        '로그인 성공',
-        '크롤링 데이터: ' + JSON.stringify(response.data.programs),
-        [
-          {
-            text: '확인',
-            onPress: () => navigation.navigate('home'), // 로그인 성공 후 HomeScreen으로 이동
-          },
-        ],
-      );
-    } catch (error) {
-      console.error(error);
-      Alert.alert('로그인 실패', '로그인에 실패했습니다.');
-    }
+    navigation.navigate('home');
+    // try {
+    //   const response = await axios.post('http://10.0.2.2:8000/login', {
+    //     studentId: studentId,
+    //     password: password,
+    //   });
+    //   console.log('Login successful:', response.data);
+    //   const cookies = response.data.cookies;
+    //   setCookie(cookies); // zustand 스토어에 쿠키 저장
+    //   Alert.alert(
+    //     '로그인 성공',
+    //     '크롤링 데이터: ' + JSON.stringify(response.data.programs),
+    //     [
+    //       {
+    //         text: '확인',
+    //         onPress: () => navigation.navigate('home'), // 로그인 성공 후 HomeScreen으로 이동
+    //       },
+    //     ],
+    //   );
+    // } catch (error) {
+    //   console.error(error);
+    //   Alert.alert('로그인 실패', '로그인에 실패했습니다.');
+    // }
   };
 
   return (
