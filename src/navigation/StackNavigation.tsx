@@ -1,11 +1,12 @@
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   createStackNavigator,
   StackNavigationOptions,
 } from '@react-navigation/stack';
-import HomeScreen from '../screens/home/HomeScreen.tsx';
-import LoginScreen from '../screens/login/LoginScreen.tsx';
-import {RootStackPageList} from '../types/navigation/navigation.ts';
+import BottomNavigation from './BottomNavigation';
+import LoginScreen from '../screens/login/LoginScreen';
+import {RootStackPageList} from '../types/navigation/navigation';
 
 const StackNavigation = () => {
   const Stack = createStackNavigator<RootStackPageList>();
@@ -21,18 +22,22 @@ const StackNavigation = () => {
       fontWeight: 'bold',
     },
   };
+
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={'login'}
+        initialRouteName="login"
         screenOptions={customStackNavigationOptions}>
-        {/* 메인 페이지 */}
-        <Stack.Screen name="home">
-          {props => <HomeScreen {...props} />}
-        </Stack.Screen>
-        <Stack.Screen name="login">
-          {props => <LoginScreen {...props} />}
-        </Stack.Screen>
+        <Stack.Screen
+          name="login"
+          component={LoginScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="home"
+          component={BottomNavigation}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
